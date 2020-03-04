@@ -8,7 +8,10 @@ export const Buttons = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  button {
-    margin: 5px;
-  }
+`;
+
+export const ChooseSingleLvl = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;

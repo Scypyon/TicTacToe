@@ -5,12 +5,25 @@ import App from "./Modules/App/App";
 import * as serviceWorker from "./serviceWorker";
 import { configureStore } from "./store";
 import { Provider } from "react-redux";
+import { routes } from "./routes";
+import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
+import ChooseDifficulty from "Modules/App/components/ChooseDifficulty";
 
 const store = configureStore();
 
+function NoMatch() {
+  return <Redirect to={routes.CHOOSE_MODE} />;
+}
+
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <BrowserRouter>
+      <Switch>
+        <Route path={routes.CHOOSE_MODE} exac component={App} />
+        <Route path={routes.DIFFICULTY} exac component={ChooseDifficulty} />
+        <Route component={NoMatch} />
+      </Switch>
+    </BrowserRouter>
   </Provider>,
   document.getElementById("root")
 );
