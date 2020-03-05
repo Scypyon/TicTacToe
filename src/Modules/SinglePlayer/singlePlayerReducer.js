@@ -9,8 +9,7 @@ export const singePlayerReducer = produce((state = basicState, action) => {
       state[action.payload.index] = action.payload.value;
       return;
     case singlePlayerTypes.CLEAR_TABLE:
-      state.forEach(el => (el = " "));
-      return;
+      return basicState;
     default:
       return state;
   }
