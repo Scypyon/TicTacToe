@@ -3,7 +3,7 @@ import produce from "immer";
 
 const basicState = Array.from({ length: 9 }, () => null);
 
-export const singePlayerReducer = produce((state = basicState, action) => {
+export const singePlayerReducer = produce((state, action) => {
   switch (action.type) {
     case singlePlayerTypes.SET_POSITION:
       state[action.payload.index] = action.payload.value;
@@ -13,4 +13,4 @@ export const singePlayerReducer = produce((state = basicState, action) => {
     default:
       return state;
   }
-});
+}, basicState);

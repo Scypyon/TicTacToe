@@ -7,34 +7,30 @@ import { winningConditions } from "constants/singlePlayerConst";
 
 export default function SinglePlayer({ match }) {
   const dataTable = useSelector(state => state.singePlayerReducer);
-  const [winner, setWinner] = useState(false);
+  const [winner, setWinner] = useState("");
 
   useEffect(() => {
     if (!winner) {
       winningConditions.forEach(tabOfWinningCond => {
+        const firstCond = dataTable[tabOfWinningCond[0]];
+        const secondCond = dataTable[tabOfWinningCond[1]];
+        const thirdCond = dataTable[tabOfWinningCond[2]];
         if (
-          dataTable[tabOfWinningCond[0]] === "x" &&
-          dataTable[tabOfWinningCond[1]] === "x" &&
-          dataTable[tabOfWinningCond[2]] === "x"
+          firstCond === secondCond &&
+          secondCond === thirdCond &&
+          firstCond !== null
         ) {
-          setWinner("player 1");
-          return;
-        }
-        if (
-          dataTable[tabOfWinningCond[0]] === "o" &&
-          dataTable[tabOfWinningCond[1]] === "o" &&
-          dataTable[tabOfWinningCond[2]] === "o"
-        ) {
-          setWinner("player 2");
+          firstCond === "x" ? setWinner("player 1") : setWinner("player 2");
           return;
         }
       });
     }
     if (winner) {
       alert(`${winner} won `);
+      setWinner("");
       return;
     }
-    if (!dataTable.includes(null)) {
+    if (!dataTable.includes(null) && !winner) {
       alert("draw");
       return;
     }
