@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { TableGame } from "../singlePlayerStyles";
+import { TableGame, Overflow } from "../singlePlayerStyles";
 import { setPostion } from "../singlePlayerActions";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function TableToGame() {
   const [player, changePlayer] = useState(1);
+  const [overflow, setOverflow] = useState(false);
   const dataTable = useSelector(state => state.singePlayerReducer);
   const dispatch = useDispatch();
 
@@ -22,21 +23,23 @@ export default function TableToGame() {
     dispatch(setPostion(index, player));
     if (player === 1) {
       changePlayer(2);
-      return;
+      setOverflow(true);
     }
-    changePlayer(1);
   };
 
   const beginnerBot = () => {
+    if (!dataTable.includes(0)) return;
     const randomNumber = Math.floor(Math.random() * 9);
     if (dataTable[randomNumber] === 0) {
       dispatch(setPostion(randomNumber, player));
       changePlayer(1);
+      setOverflow(false);
     } else beginnerBot();
   };
 
   return (
     <TableGame>
+      {overflow && <Overflow />}
       <tr>
         <td onClick={() => move(0)}>
           {dataTable[0] === 1 ? "x" : dataTable[0] !== 0 ? "o" : ""}

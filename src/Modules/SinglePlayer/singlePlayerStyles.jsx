@@ -20,3 +20,12 @@ export const TableGame = styled.table`
     border-bottom: 2px solid black;
   }
 `;
+
+export const Overflow = styled.div`
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+`;
