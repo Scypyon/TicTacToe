@@ -1,7 +1,7 @@
 import * as singlePlayerTypes from "./singlePlayerTypes";
 import produce from "immer";
 
-const basicState = Array.from({ length: 9 }, () => 0);
+const basicState = Array.from({ length: 9 }, () => " ");
 
 export const singePlayerReducer = produce((state = basicState, action) => {
   switch (action.type) {
@@ -9,7 +9,7 @@ export const singePlayerReducer = produce((state = basicState, action) => {
       state[action.payload.index] = action.payload.value;
       return;
     case singlePlayerTypes.CLEAR_TABLE:
-      state.forEach(el => (el = 0));
+      state.forEach(el => (el = " "));
       return;
     default:
       return state;
