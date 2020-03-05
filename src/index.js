@@ -8,6 +8,7 @@ import { Provider } from "react-redux";
 import { routes } from "./routes";
 import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
 import ChooseDifficulty from "Modules/App/components/ChooseDifficulty";
+import SinglePlayer from "Modules/SinglePlayer/SinglePlayer";
 
 const store = configureStore();
 
@@ -21,6 +22,7 @@ ReactDOM.render(
       <Switch>
         <Route path={routes.CHOOSE_MODE} exac component={App} />
         <Route path={routes.DIFFICULTY} exac component={ChooseDifficulty} />
+        <Route path={routes.GAME} component={SinglePlayer} />
         <Route component={NoMatch} />
       </Switch>
     </BrowserRouter>
