@@ -42,8 +42,11 @@ export default function SinglePlayer({ match }) {
     }
     if (winner) {
       alert(`${winner} won `);
-    } else if (!dataTable.includes(null)) {
+      return;
+    }
+    if (!dataTable.includes(null)) {
       alert("draw");
+      return;
     }
   }, [dataTable]);
 
