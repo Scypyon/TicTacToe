@@ -1,7 +1,7 @@
 import * as singlePlayerTypes from "./singlePlayerTypes";
 import produce from "immer";
 
-const basicState = Array.from({ length: 9 }, () => " ");
+const basicState = Array(9).fill(null);
 
 export const singePlayerReducer = produce((state = basicState, action) => {
   switch (action.type) {

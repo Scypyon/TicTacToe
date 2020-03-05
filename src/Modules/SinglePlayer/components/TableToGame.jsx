@@ -16,7 +16,7 @@ export default function TableToGame() {
   }, [player]);
 
   const move = index => {
-    if (dataTable[index] !== " ") {
+    if (dataTable[index] !== null) {
       alert("To pole jest już zajęte");
       return;
     }
@@ -28,12 +28,11 @@ export default function TableToGame() {
   };
 
   const beginnerBot = () => {
-    if (!dataTable.includes(" ")) return;
+    if (!dataTable.includes(null)) return;
     const randomNumber = Math.floor(Math.random() * 9);
-    if (dataTable[randomNumber] === " ") {
+    if (dataTable[randomNumber] === null) {
       dispatch(setPostion(randomNumber, player));
       changePlayer("x");
-      console.log("dupa");
       setOverflow(false);
     } else beginnerBot();
   };
